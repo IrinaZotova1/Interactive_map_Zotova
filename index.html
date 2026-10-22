@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Театр Гранд-Аврора — Бронирование</title>
+  
+  <!-- Подключение шрифтов Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Подключение стилей -->
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Подключение скрипта -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="loader-mask">Гранд-Аврора</div>
+    <div class="loader-line"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">Гранд-Аврора</div>
+        <div class="brand-sub">Императорский театр<br>Невский проспект, 1</div>
+      </div>
+    </header>
+
+    <section class="afisha-section">
+      <div class="section-header">
+        <h2 class="section-title">Ноябрь</h2>
+        <span class="section-subtitle">Выберите постановку</span>
+      </div>
+      <div class="performance-grid" id="performance-grid"></div>
+    </section>
+
+    <div class="booking-layout">
+      <div class="main-content">
+        <div class="toolbar">
+          <div class="price-slider-container">
+            <div class="slider-labels">
+              <span>Бюджет:</span>
+              <strong><span id="price-min-val">1 500</span> — <span id="price-max-val">8 000</span> ₽</strong>
+            </div>
+            <div class="range-inputs">
+              <div class="range-track-bg"></div>
+              <div class="range-track-active" id="range-track-active"></div>
+              <input type="range" id="slider-min" min="1500" max="8000" step="100" value="1500" />
+              <input type="range" id="slider-max" min="1500" max="8000" step="100" value="8000" />
+            </div>
+          </div>
+          <div class="legend-pills">
+            <div class="legend-pill"><span class="legend-dot" style="background:var(--cat-premium)"></span> Партер — <strong>от 5 300 ₽</strong></div>
+            <div class="legend-pill"><span class="legend-dot" style="background:var(--cat-standard)"></span> Амфитеатр — <strong>от 2 800 ₽</strong></div>
+            <div class="legend-pill"><span class="legend-dot" style="background:var(--cat-economy)"></span> Балкон — <strong>от 1 600 ₽</strong></div>
+          </div>
+        </div>
+
+        <div class="hall-wrapper" id="hall">
+          <!-- Схема генерируется скриптом -->
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="checkout-card">
+          <h3 class="checkout-title">Ваша корзина</h3>
+          <ul class="selected-list" id="selected-list"></ul>
+          
+          <div class="user-form">
+            <input type="text" id="user-name" class="form-input" placeholder="Ваше имя *" />
+            <input type="tel" id="user-phone" class="form-input" placeholder="Телефон *" />
+          </div>
+
+          <div class="total-row">
+            <span>Итого:</span>
+            <span class="total-price" id="total-price">0 ₽</span>
+          </div>
+          <button class="btn-primary" id="confirm-btn" disabled>Забронировать</button>
+          <div class="error-msg" id="error-msg"></div>
+        </div>
+
+        <div class="checkout-card">
+          <h3 class="checkout-title">Мои брони</h3>
+          <div id="bookings-list"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Модалка: Подтверждение удаления -->
+  <div class="modal-overlay" id="modal-confirm">
+    <div class="modal-content">
+      <h3 class="modal-title">Отмена брони</h3>
+      <p class="modal-text">Вы уверены, что хотите отменить бронь? Места снова станут доступны для других гостей.</p>
+      <div class="modal-actions">
+        <button class="btn-outline" id="btn-modal-cancel">Оставить</button>
+        <button class="btn-outline btn-danger-outline" id="btn-modal-confirm">Отменить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модалка: Успех -->
+  <div class="modal-overlay" id="modal-success">
+    <div class="modal-content">
+      <h3 class="modal-title">Успешно!</h3>
+      <p class="modal-text" id="success-text">Бронь отменена.</p>
+      <div class="modal-actions">
+        <button class="btn-solid" onclick="document.getElementById('modal-success').classList.remove('active')">Отлично</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
